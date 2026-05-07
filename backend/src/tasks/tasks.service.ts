@@ -42,7 +42,7 @@ export class TasksService {
   }
 
   async findById(id: string): Promise<Task> {
-    const task = await this.taskRepo.findOne({ where: { id } });
+    const task = await this.taskRepo.findOne({ where: { id }, relations: ['author', 'helper'] });
     if (!task) throw new NotFoundException('Úkol nebyl nalezen');
     return task;
   }
@@ -85,6 +85,6 @@ export class TasksService {
   }
 
   async findAllAdmin(): Promise<Task[]> {
-    return this.taskRepo.find({ order: { createdAt: 'DESC' } });
+    return this.taskRepo.find({ relations: ['author', 'helper'], order: { createdAt: 'DESC' } });
   }
 }
