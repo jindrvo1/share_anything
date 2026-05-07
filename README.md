@@ -55,7 +55,8 @@ cd backend
 cp .env.example .env
 # Edit .env and set JWT_SECRET to a secure value
 npm install
-npm run start:dev
+npm run db:setup    # creates the 'pomoc_ted' database (run once)
+npm run start:dev   # TypeORM creates all tables automatically on first start
 \`\`\`
 
 **Frontend:**
