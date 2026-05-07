@@ -31,7 +31,8 @@ function TasksContent() {
     setLoading(false);
   };
 
-  useEffect(() => { fetchTasks(); }, [category]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { fetchTasks(); }, [category]); // search is applied on Enter/button click
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">

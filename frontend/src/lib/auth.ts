@@ -9,6 +9,8 @@ export interface User {
   location?: string;
 }
 
+// NOTE: Tokens are stored in localStorage for simplicity in this local app.
+// In a production environment, prefer httpOnly cookies to reduce XSS exposure.
 export function getToken(): string | null {
   if (typeof window === 'undefined') return null;
   return localStorage.getItem('token');
