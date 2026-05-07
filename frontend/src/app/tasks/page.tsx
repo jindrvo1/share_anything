@@ -12,6 +12,7 @@ function TasksContent() {
   const params = useSearchParams();
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState('');
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState(params.get('category') || '');
 
@@ -23,7 +24,10 @@ function TasksContent() {
       if (category && category !== 'Všechny') q.category = category;
       const res = await api.get('/tasks', { params: q });
       setTasks(res.data);
-    } catch {}
+      setFetchError('');
+    } catch (e: any) {
+      setFetchError(e.response?.data?.message || 'Nepodařilo se načíst úkoly');
+    }
     setLoading(false);
   };
 
@@ -77,6 +81,11 @@ function TasksContent() {
 
       {loading ? (
         <div className="text-center py-16 text-gray-400">Načítám úkoly...</div>
+      ) : fetchError ? (
+        <div className="text-center py-16">
+          <div className="text-4xl mb-4">⚠️</div>
+          <p className="text-red-500">{fetchError}</p>
+        </div>
       ) : tasks.length === 0 ? (
         <div className="text-center py-16">
           <div className="text-4xl mb-4">📭</div>
