@@ -16,7 +16,7 @@ Místní micro-service platforma pro rychlou vzájemnou pomoc mezi uživateli v 
 
 ## Technologie
 
-- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **Frontend**: Next.js 15, TypeScript, Tailwind CSS
 - **Backend**: NestJS, TypeScript, PostgreSQL, TypeORM
 - **Auth**: JWT
 - **Email**: Nodemailer
@@ -33,6 +33,10 @@ Místní micro-service platforma pro rychlou vzájemnou pomoc mezi uživateli v 
 \`\`\`bash
 git clone https://github.com/jindrvo1/share_anything.git
 cd share_anything
+
+# Required: set a secret key for JWT signing
+export JWT_SECRET=your-secret-key
+
 docker-compose up -d
 \`\`\`
 
@@ -43,10 +47,13 @@ Aplikace bude dostupná na:
 
 ### Lokální vývoj / Local Development
 
+PostgreSQL musí běžet lokálně (nebo přes Docker: `docker-compose up -d postgres`).
+
 **Backend:**
 \`\`\`bash
 cd backend
 cp .env.example .env
+# Edit .env and set JWT_SECRET to a secure value
 npm install
 npm run start:dev
 \`\`\`
