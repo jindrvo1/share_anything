@@ -11,6 +11,8 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<'users' | 'tasks'>('users');
   const [loading, setLoading] = useState(true);
 
+  // router is stable from useRouter; run once on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const user = getUser();
     if (!getToken() || user?.role !== 'ADMIN') { router.push('/'); return; }

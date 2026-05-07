@@ -13,6 +13,8 @@ export default function DashboardPage() {
   const [helpingTasks, setHelpingTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // router is stable from useRouter; run once on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!getToken()) { router.push('/auth/login'); return; }
     Promise.all([

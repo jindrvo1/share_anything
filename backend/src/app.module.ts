@@ -18,7 +18,7 @@ import { Task } from './tasks/task.entity';
       password: process.env.DATABASE_PASSWORD || 'postgres',
       database: process.env.DATABASE_NAME || 'pomoc_ted',
       entities: [User, Task],
-      synchronize: process.env.NODE_ENV !== 'production', // use migrations in production
+      synchronize: process.env.DB_SYNCHRONIZE === 'true', // explicitly opt-in; use migrations in production
     }),
     AuthModule,
     UsersModule,

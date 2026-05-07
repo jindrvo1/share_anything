@@ -26,8 +26,9 @@ services:
       DATABASE_NAME: pomoc_ted
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
-      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
       # ⚠️  Set JWT_SECRET env variable before deploying: export JWT_SECRET=your-secure-secret
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set}
+      DB_SYNCHRONIZE: "true"  # set to false and use migrations in production
       SMTP_HOST: localhost
       SMTP_PORT: 587
       SMTP_USER: ""

@@ -19,6 +19,8 @@ export default function ProfilePage() {
   const [error, setError] = useState('');
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<ProfileForm>();
 
+  // router is stable from useRouter; run once on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!getToken()) { router.push('/auth/login'); return; }
     api.get('/users/me').then((res) => {

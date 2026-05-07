@@ -32,6 +32,8 @@ export default function TaskDetailPage() {
       .then((r) => setTask(r.data))
       .catch(() => router.push('/tasks'))
       .finally(() => setLoading(false));
+  // router is stable from useRouter; re-run only when id changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleRespond = async () => {
